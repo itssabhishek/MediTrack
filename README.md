@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# MediTrack
+####Guide: 
+> Dr. Pravin Adivarekar
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+####Made by:
+> Deepa Upadhyay
 
-## Available Scripts
+> Abhishek Tiwari
 
-In the project directory, you can run:
+> Pragya Tripathi
 
-### `npm start`
+> Aditi Shardul
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Problem Statement
+In today’s busy schedule, we often tend to forget the most important
+things of our life, that is taking care of our health. When it comes to
+health, a big part of it is dealt by our medicines.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Objective
+To assist people in reminding them about medicines, tracking their
+current stock of the required medicines, getting the location of the
+nearest chemist shop and scheduling appointments at the nearest
+clinic.
 
-### `npm test`
+## Scope
+- MediTrack will be a Web app which help people with their medicine
+and doctors’ routine. It will store all the medications prescribed him
+or her and help maintain the stock till the time needed.
+- Our app intends to make it easier for the users by handling a few of
+the most responsible things regarding medicines.
+- Anybody who would like to get relieved of the headache of
+remembering and counting medicines every alternate day should
+use this app.
+- It will help not just in maintaining stocks but will also show nearby
+shops’ locations where the medicine might be available
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Services
+- Maintain track of the stock of required medicines.
+- Schedule reminders at appropriate times for prescribed medicines.
+- List the nearest chemist shops’ locations.
+- Provision for the shops to upload and update the clinic doctors’
+weekly schedule(up to the shop owners).
+- Rating scheme for shops to help users make an informed decision.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Reference
+The original idea for this project is published on [GeeksForGeeks](https://www.geeksforgeeks.org/project-idea-meditrack/)
