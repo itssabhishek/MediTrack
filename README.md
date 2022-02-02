@@ -1,8 +1,8 @@
 # MediTrack
-####Guide: 
+**Guide:**
 > Dr. Pravin Adivarekar
 
-####Made by:
+**Made by:**
 > Deepa Upadhyay
 
 > Abhishek Tiwari
