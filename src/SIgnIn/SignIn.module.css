@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --color_grey-medium: #656565;
+    --color_grey-light: #c4c4c4;
+    --color_black: #000000;
+    --color_pink: #ee31a2;
+    --color_sky-blue: #00ffff;
+    --color_blue: #5d5fef;
+    --color-green_light: #c9e265;
+    --color-blue_light: #38b6ff;
+    --color-violet_dark: #011824;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif
+}
+
+body {
+    background: #ecf0f3
+}
+
+h6{
+  margin-bottom: 0;
+}
+
+.wrapper {
+    max-width: 350px;
+    min-height: 500px;
+    margin: 80px auto;
+    padding: 40px 30px 30px 30px;
+    background-color: #ecf0f3;
+    border-radius: 15px;
+    box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff
+}
+
+.logo {
+    width: 80px;
+    margin: auto
+}
+
+.logo img {
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0px 0px 3px #5f5f5f, 0px 0px 0px 5px #ecf0f3, 8px 8px 15px #a7aaa7, -8px -8px 15px #fff
+}
+
+.wrapper .name {
+    font-weight: 600;
+    font-size: 1.4rem;
+    letter-spacing: 1.3px;
+    padding-left: 10px;
+    background-image: linear-gradient( to right,var(--color-green_light), var(--color-blue_light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@media(max-width: 380px) {
+    .wrapper {
+        margin: 30px 20px;
+        padding: 40px 15px 15px 15px
+    }
+}
+
+/*Google Button*/
+.button_google {
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    justify-content: space-evenly;
+    border: 1px solid var(--color_grey-light);
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: 0 2px 5px var(--color_grey-medium);
+    -webkit-box-shadow: 0 2px 5px var(--color_grey-medium);
+    -moz-box-shadow: 0 2px 5px var(--color_grey-medium);
+    width: 250px;
+    height: 40px;
+    font-weight: bolder;
+    transition: all 0.2s ease-out;
+    cursor: pointer;
+}
+
+.button_google:active {
+    transform: translateY(3px);
+    box-shadow: none;
+}
