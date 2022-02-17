@@ -1,12 +1,13 @@
 // This code is contributed by Suman ali on codepen(https://codepen.io/sumanengbd).
+import styles from "./Preloader.module.css"
 
 function Preloader() {
   return (
 
-      <div id={'preloader'}>
-          <div id="css3-spinner-svg-pulse-wrapper">
+      <div id={styles["preloader"]}>
+          <div id={styles["css3-spinner-svg-pulse-wrapper"]}>
               <svg
-                  id="css3-spinner-svg-pulse"
+                  id={styles["css3-spinner-svg-pulse"]}
                   version="1.2"
                   height="210"
                   width="550"
@@ -15,7 +16,7 @@ function Preloader() {
                   xmlnsXlink="http://www.w3.org/1999/xlink"
               >
                   <path
-                      id="css3-spinner-pulse"
+                      id={styles["css3-spinner-pulse"]}
                       stroke="var(--bs-danger)"
                       fill="none"
                       strokeWidth="2"
@@ -24,7 +25,9 @@ function Preloader() {
                   />
               </svg>
           </div>
-
+          <button className="bg-amber-700">
+              Save changes
+          </button>
       </div>
   );
 }

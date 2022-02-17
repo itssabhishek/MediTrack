@@ -27,13 +27,14 @@ export const SignIn = () => (
             </form>
 
         </div>
-        <footer className={"mx-auto text-center"} style={{width :'400px'}}>
+        <footer className={"mx-auto text-center"} style={{width: '400px'}}>
             <div style={{color: "grey", fontSize: .6 + "rem"}}>
                 <FontAwesomeIcon icon={faCopyright} size={'lg'}/>
                 <span> Copyright {`${year - 1} - ${year}`}. This project is made by Deepa Upadhyay, Aditi Shardul, Pragya Tripathi and Abhishek Tiwari. Do not claim as yours.</span>
             </div>
         </footer>
-    </>)
+    </>
+)
 
 
 
