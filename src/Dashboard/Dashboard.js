@@ -8,9 +8,9 @@ const Dashboard = () => {
 
             <div>
                 <div className="activity grid grid-cols-12 mb-4">
-                    <div className={'activity col-span-6'}>
+                    <div className={'activity col-span-4'}>
                         <p>Activity:</p>
-                        <div className="activity_container p-3 rounded bg-gradient-to-br from-[#15EDA3] to-[#0EA47A]">
+                        <div className="activity_container p-3 rounded bg-gradient-to-br from-[#38EF7D] to-[#11998E] shadow-lg">
                             <h4 className="font-extralight text-4xl text-white">
                                 Next...
                             </h4>
@@ -32,10 +32,13 @@ const Dashboard = () => {
                             </p>
                         </div>
                     </div>
-                    <div className={'activity col-start-10 col-end-13'}>
+                    <div className={'activity col-start-8 col-end-13'}>
                         <p>Calendar:</p>
                         <div className="activity_container">
-                            <DatePicker />
+                            <DatePicker
+                                className="h-[320px]"
+                                style={{ width: '500px' }}
+                            />
                         </div>
                     </div>
                 </div>

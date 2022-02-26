@@ -19,9 +19,11 @@ const List = (props) => {
 
 const Home = function () {
     return (
-        <div className="grid grid-cols-12">
-            <Sidenav />
-            <div className="grid grid-rows-[80px_1fr] col-start-2 col-span-full">
+        <div className="grid grid-cols-12 ">
+            <div className="peer sidenav w-[129px] hover:w-[200px] transition-all duration-1000">
+                <Sidenav />
+            </div>
+            <div className="peer-hover:ml-[70px] peer-hover:opacity-5 transition-all duration-1000 grid grid-rows-[80px_1fr] col-start-2 col-span-full">
                 <nav className="navbar_top flex items-center bg-slate-800 ">
                     <div className="nav_items w-4/6">
                         <ul className="flex items-center my-auto justify-between">
