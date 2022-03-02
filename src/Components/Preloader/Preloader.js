@@ -1,5 +1,5 @@
 // This code is contributed by Suman ali on codepen(https://codepen.io/sumanengbd).
-import styles from './Preloader.module.css'
+import styles from './Preloader.module.css';
 
 function Preloader() {
     return (
@@ -24,9 +24,8 @@ function Preloader() {
                     />
                 </svg>
             </div>
-            <button className="bg-amber-700">Save changes</button>
         </div>
-    )
+    );
 }
 
-export default Preloader
+export default Preloader;

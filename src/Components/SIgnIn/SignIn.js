@@ -1,6 +1,6 @@
-import styles from './SignIn.module.css'
+import styles from './SignIn.module.css';
 
-const year = new Date().getFullYear().toString().slice(2)
+const year = new Date().getFullYear().toString().slice(2);
 
 export const SignIn = () => (
     <>
@@ -58,4 +58,4 @@ export const SignIn = () => (
             </div>
         </footer>
     </>
-)
+);

@@ -24,7 +24,7 @@ const Sidenav = function () {
                 <ul className="sidenav_options flex flex-col h-[100px] justify-between p-0 mt-10">
                     <li className="sidenav_options--list hover:bg-green-200 p-2 rounded ">
                         <a
-                            href="/schedule"
+                            to="/schedule"
                             className="text-black text-lg no-underline font-medium  flex items-center gap-2 justify-between"
                         >
                             <p className="hidden group-hover:inline m-0">
@@ -49,7 +49,7 @@ const Sidenav = function () {
                     </li>
                     <li className="sidenav_options--list hover:bg-green-200 mt-4 p-2 rounded">
                         <a
-                            href="/edit"
+                            to="/edit"
                             className="text-black text-lg no-underline font-medium  flex items-center gap-2 justify-between "
                         >
                             <p className="hidden group-hover:inline m-0 transition-all duration-1000">
@@ -74,7 +74,7 @@ const Sidenav = function () {
                     </li>
                     <li className="sidenav_options--list hover:bg-green-200 mt-4 p-2 rounded">
                         <a
-                            href="/user"
+                            to="/user"
                             className="text-black text-lg no-underline font-medium flex gap-2 items-center justify-between"
                         >
                             <p className="hidden group-hover:inline m-0">
