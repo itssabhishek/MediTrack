@@ -24,11 +24,10 @@ const Dashboard = () => {
                             </h5>
                             <p className="text-sm text-gray-500">
                                 Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit. Alias corporis debitis
-                                doloribus dolorum eaque eos error
-                                exercitationem, explicabo in magni, maiores
-                                modi, necessitatibus qui ratione rem repellat
-                                sapiente similique vitae!
+                                adipisicing elit. Consequuntur cum cumque
+                                deserunt eos error, est expedita harum in ipsum
+                                nihil nulla, odio officiis pariatur possimus
+                                quia quidem reprehenderit sequi voluptatibus?
                             </p>
                         </div>
                     </div>

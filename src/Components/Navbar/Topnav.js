@@ -1,21 +1,6 @@
-const Topnav = () => {
-    const List = (props) => {
-        return (
-            <li>
-                <a
-                    href={props.text.toLowerCase().replaceAll(' ', '')}
-                    className={`${
-                        props.sts === 'active'
-                            ? 'text-blue-500 hover:text-blue-700'
-                            : 'text-yellow-500 hover:text-blue-700'
-                    } text-lg`}
-                >
-                    {props.text}
-                </a>
-            </li>
-        );
-    };
+import { Link } from 'react-router-dom';
 
+const Topnav = () => {
     return (
         <nav className="navbar_top flex items-center bg-slate-800 ">
             <div className="nav_items w-4/6">
@@ -27,10 +12,38 @@ const Topnav = () => {
                             className="h-16 h-16"
                         />
                     </li>
-                    <List text="Dashboard" sts={'active'} />
-                    <List text="Healthcare Products" />
-                    <List text="Hospitals & Medical Shops" />
-                    <List text="Help" />
+                    <li>
+                        <Link
+                            to={'/home'}
+                            className={`text-blue-500 hover:text-blue-700`}
+                        >
+                            Dashboard
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to={'/home/products'}
+                            className={'text-blue-500 hover:text-blue-700'}
+                        >
+                            Healthcare Products
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to={'/home/hospitals'}
+                            className={'text-blue-500 hover:text-blue-700'}
+                        >
+                            Hospitals & Medical Shops
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to={'/home/help'}
+                            className={'text-blue-500 hover:text-blue-700'}
+                        >
+                            Help
+                        </Link>
+                    </li>
                 </ul>
             </div>
         </nav>

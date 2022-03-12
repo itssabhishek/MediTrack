@@ -3,17 +3,16 @@ import ReactDOM from 'react-dom';
 import './style.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/bootstrap/dist/js/bootstrap';
-import Preloader from './Components/Preloader/Preloader';
 import Home from './Components/Home/Home';
-import { Dashboard } from './Components/Home/Pages/Dashboard';
 import { SignIn } from './Components/SIgnIn/SignIn';
+import Topnav from './Components/Navbar/Topnav';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import NewSchedule from './Components/SideNavComponents/NewSchedule';
 
 ReactDOM.render(
     <React.StrictMode>
-        {/*<Preloader />*/}
-        {/*<Home />*/}
-        {/*<Dashboard />*/}
-        <SignIn />
+        {/*<SignIn />*/}
+        <NewSchedule />
     </React.StrictMode>,
     document.getElementById('root')
 );

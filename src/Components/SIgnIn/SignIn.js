@@ -1,6 +1,6 @@
 import styles from './SignIn.module.css';
-
-const year = new Date().getFullYear().toString().slice(2);
+import { Link } from 'react-router-dom';
+import Footer from '../Footer/Footer';
 
 export const SignIn = () => (
     <>
@@ -15,7 +15,7 @@ export const SignIn = () => (
                 <div className={` d-flex flex-column align-items-center`}>
                     <h3>Hello!</h3>
                     <p>Please SignIn to Continue..</p>
-                    <a>
+                    <a className="no-underline text-black">
                         <button className={`${styles.button_google}`}>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -48,14 +48,6 @@ export const SignIn = () => (
                 </div>
             </form>
         </div>
-        <footer className={'mx-auto text-center'} style={{ width: '400px' }}>
-            <div style={{ color: 'grey', fontSize: 0.6 + 'rem' }}>
-                <span>
-                    &copy; Copyright {`${year - 1} - ${year}`}. This project is
-                    made by Deepa Upadhyay, Aditi Shardul, Pragya Tripathi and
-                    Abhishek Tiwari. Do not claim as yours.
-                </span>
-            </div>
-        </footer>
+        <Footer />
     </>
 );
