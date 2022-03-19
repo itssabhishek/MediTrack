@@ -1,55 +1,34 @@
-import React, { useState } from 'react';
 import classes from './NewSchedule.module.css';
 import Footer from '../Footer/Footer';
-
-const Input = ({ type, id, placeholder }) => {
-    const [input, setInput] = useState('');
-    return (
-        <div className="input h-[50px] relative">
-            <input
-                type={type}
-                id={id}
-                placeholder={placeholder}
-                min="1"
-                value={input}
-                onInput={(e) => setInput(e.target.value)}
-                className="input_text peer h-full w-full rounded outline-2 outline-green-600 border-2 border-blue-500 indent-3 text-lg absolute"
-            />
-            <label
-                htmlFor={id}
-                className={`${
-                    input ? 'inline' : 'hidden'
-                } peer-focus:inline text-sm text-gray-500 absolute ml-3 -mt-3 bg-white p-1`}
-            >
-                {placeholder}
-            </label>
-        </div>
-    );
-};
+import Input from './NewSchedule/Input';
 
 const NewSchedule = () => {
     return (
-        <div
-            className="h-full"
-            // style={{
-            //     backgroundImage: 'url("/images/new.png")',
-            //     backgroundRepeat: 'no-repeat',
-            //     backgroundAttachment: 'fixed',
-            //     backgroundSize: 'cover',
-            // }}
-        >
-            <form className={classes.wrapper}>
-                <Input type="text" id="mName" placeholder="Medicine Name" />
-                <Input type="number" id="mDoses" placeholder="Doses" />
-                <Input type="number" id="mStock" placeholder="Stock" />
-                <Input type="time" id="mTime" placeholder="Time" />
-                <button
-                    type="submit"
-                    className="submit_Button h-auto w-full rounded bg-green-500 hover:bg-green-600 border-2 text-lg text-white"
+        <div className="bg-white">
+            <h1 className="p-3 font-light text-green-600">Add new schedule</h1>
+            <div className="main grid grid-cols-2 grid-rows-[84vh] items-stretch">
+                <form
+                    className={`${classes.wrapper} border-1 border-grey-500 shadow`}
                 >
-                    Submit
-                </button>
-            </form>
+                    <Input type="text" id="mName" placeholder="Medicine Name" />
+                    <Input type="number" id="mDoses" placeholder="Doses" />
+                    <Input type="number" id="mStock" placeholder="Stock" />
+                    <Input type="time" id="mTime" placeholder="Time" />
+                    <div className="buttons flex h-12">
+                        <input
+                            type="submit"
+                            className="submit_Button flex-1 rounded bg-green-500 hover:bg-green-600 border-2 text-lg text-white"
+                            value="Submit"
+                        />
+                        <input
+                            type="reset"
+                            className="flex-1 border-1 border-green-600 rounded hover:bg-blue-500 hover:text-white"
+                            value="Add"
+                        />
+                    </div>
+                </form>
+                <img src={'/images/new.jpg'} alt="NewImage" />
+            </div>
             <Footer />
         </div>
     );

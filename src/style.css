@@ -29,6 +29,7 @@ body {
     width: 100%;
     overflow: hidden;
     background: white;
+    z-index: 10;
 }
 
 #css3-spinner-svg-pulse-wrapper {

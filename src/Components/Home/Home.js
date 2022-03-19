@@ -2,10 +2,9 @@ import Sidenav from '../Navbar/Sidenav';
 import Topnav from '../Navbar/Topnav';
 import Dashboard from './Pages/Dashboard';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-
-const Example = () => {
-    return <h1>Hi</h1>;
-};
+import HMShops from './Pages/HMShops';
+import Products from './Pages/Products';
+import Help from './Pages/Help';
 
 const Home = function () {
     return (
@@ -16,18 +15,19 @@ const Home = function () {
                 </div>
                 <div className="peer-hover:ml-[70px] peer-hover:opacity-5 transition-all duration-1000 grid grid-rows-[80px_1fr] col-start-2 col-span-full">
                     <Topnav />
-                    <main className="main_content grid grid-rows-[10%_50%_40%]">
+                    <main className="main_content border-l-2 border-black p-3 bg-white">
                         <Routes>
-                            <Route path={'/home'} element={<Dashboard />} />
+                            <Route path="/" element={<Dashboard />} />
+                            <Route path="/home" element={<Dashboard />} />
                             <Route
                                 path="/home/products"
-                                element={<Example />}
+                                element={<Products />}
                             />
                             <Route
                                 path="/home/hospitals"
-                                element={<Dashboard />}
+                                element={<HMShops />}
                             />
-                            <Route path="/home/help" element={<Dashboard />} />
+                            <Route path="/home/help" element={<Help />} />
                         </Routes>
                     </main>
                 </div>

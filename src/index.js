@@ -4,15 +4,18 @@ import './style.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/bootstrap/dist/js/bootstrap';
 import Home from './Components/Home/Home';
-import { SignIn } from './Components/SIgnIn/SignIn';
-import Topnav from './Components/Navbar/Topnav';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import NewSchedule from './Components/SideNavComponents/NewSchedule';
+import Edit from './Components/SideNavComponents/Edit';
 
-ReactDOM.render(
-    <React.StrictMode>
-        {/*<SignIn />*/}
-        <NewSchedule />
-    </React.StrictMode>,
-    document.getElementById('root')
-);
+//Main React Code
+ReactDOM.render(<Edit />, document.getElementById('root'));
+
+//Custom code
+//Highlight selected page link on Topnav
+const navLink = document.querySelector('.nav_items');
+const navLinks = document.querySelectorAll('.nav_item');
+navLink.addEventListener('click', function (e) {
+    navLinks.forEach((el) => el.classList.remove('text-yellow-400'));
+
+    !e.target.classList.contains('text-yellow-400') &&
+        e.target.classList.add('text-yellow-400');
+});

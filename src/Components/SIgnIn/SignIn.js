@@ -15,7 +15,7 @@ export const SignIn = () => (
                 <div className={` d-flex flex-column align-items-center`}>
                     <h3>Hello!</h3>
                     <p>Please SignIn to Continue..</p>
-                    <a className="no-underline text-black">
+                    <Link to="/home" className="no-underline text-black">
                         <button className={`${styles.button_google}`}>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -44,7 +44,7 @@ export const SignIn = () => (
                             </svg>
                             <h6>Sign In with Google</h6>
                         </button>
-                    </a>
+                    </Link>
                 </div>
             </form>
         </div>

@@ -1,7 +1,9 @@
+import { Link } from 'react-router-dom';
+
 const Sidenav = function () {
     return (
         <div
-            className={`group navbar_side bg-white flex flex-col border-r-2 border-gray-500 py-3 items-center hover:px-4 justify-evenly vh-100`}
+            className={`group navbar_side bg-white flex flex-col py-3 items-center hover:px-4 justify-evenly vh-100`}
         >
             <div className="flex-1 flex flex-col justify-start items-center">
                 <button className="w-fit group-hover:rotate-180  transition-all duration-1000">
@@ -23,8 +25,8 @@ const Sidenav = function () {
 
                 <ul className="sidenav_options flex flex-col h-[100px] justify-between p-0 mt-10">
                     <li className="sidenav_options--list hover:bg-green-200 p-2 rounded ">
-                        <a
-                            to="/schedule"
+                        <Link
+                            to="/new"
                             className="text-black text-lg no-underline font-medium  flex items-center gap-2 justify-between"
                         >
                             <p className="hidden group-hover:inline m-0">
@@ -45,7 +47,7 @@ const Sidenav = function () {
                                     d="M12 4v16m8-8H4"
                                 />
                             </svg>
-                        </a>
+                        </Link>
                     </li>
                     <li className="sidenav_options--list hover:bg-green-200 mt-4 p-2 rounded">
                         <a
