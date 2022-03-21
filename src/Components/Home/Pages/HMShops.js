@@ -1,9 +1,9 @@
 import React from 'react';
-import { Input } from '../../SideNavComponents/NewSchedule';
+import Input from '../../SideNavComponents/NewSchedule/Input';
 
 const HmShops = () => {
     return (
-        <div className="grid grid-rows-[10vh_1fr]">
+        <div className="grid grid-rows-[10vh_1fr] animate__animated animate__fadeInUp">
             <h1 className="text-[#219653]">
                 Search for,
                 <span className="font-extralight">

@@ -2,7 +2,7 @@ import styles from './SignIn.module.css';
 import { Link } from 'react-router-dom';
 import Footer from '../Footer/Footer';
 
-export const SignIn = () => (
+const SignIn = () => (
     <>
         <div className={styles.wrapper}>
             <div className={styles.logo}>
@@ -51,3 +51,5 @@ export const SignIn = () => (
         <Footer />
     </>
 );
+
+export default SignIn;

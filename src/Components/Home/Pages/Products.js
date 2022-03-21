@@ -109,7 +109,7 @@ const Modal = () => {
 
 const Products = () => {
     return (
-        <div className="products">
+        <div className="products animate__animated animate__fadeInUp">
             <div className="grid grid-rows-[10vh_1fr]">
                 <h1 className="text-[#219653]">
                     Shop,

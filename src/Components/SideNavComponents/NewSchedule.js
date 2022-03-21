@@ -4,7 +4,7 @@ import Input from './NewSchedule/Input';
 
 const NewSchedule = () => {
     return (
-        <div className="bg-white">
+        <div className="bg-white animate__animated animate__fadeInUp">
             <h1 className="p-3 font-light text-green-600">Add new schedule</h1>
             <div className="main grid grid-cols-2 grid-rows-[84vh] items-stretch">
                 <form

@@ -15,7 +15,7 @@ const Accordion = (props) => {
         w-full
         py-4
         px-5
-        text-base text-gray-800 text-left
+        text-gray-800 text-left
         bg-white
         border-0
         rounded-none

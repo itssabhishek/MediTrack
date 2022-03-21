@@ -12,7 +12,7 @@
 }
 
 body {
-    background: white;
+    background: #ffffff;
 }
 
 :root {
@@ -60,6 +60,11 @@ body {
 }
 
 /*Animation*/
+/*Overriding default css from animate.css library*/
+.animate__fadeInUp {
+    transition: fadeInUp 1s;
+}
+
 @-webkit-keyframes dash {
     from {
         stroke-dashoffset: 814;
@@ -77,5 +82,17 @@ body {
 
     to {
         stroke-dashoffset: -814;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

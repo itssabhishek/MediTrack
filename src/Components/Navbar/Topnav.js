@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 const Topnav = () => {
     return (
-        <nav className="navbar_top flex items-center bg-slate-800 ">
-            <ul className="nav_items w-4/6 flex items-center my-auto justify-between">
+        <nav className="navbar_top flex bg-slate-800 ">
+            <ul className="nav_items w-4/6 flex h-full justify-between items-center m-0">
                 <li>
                     <img
                         src={'/images/MediTrackIcon.png'}
@@ -13,7 +13,7 @@ const Topnav = () => {
                 <li>
                     <Link
                         to="/home"
-                        className={`text-lg text-blue-500 no-underline nav_item text-yellow-400 hover:text-yellow-400`}
+                        className={`text-lg text-blue-500 !text-yellow-400 no-underline nav_item hover:text-yellow-400`}
                     >
                         Dashboard
                     </Link>

@@ -2,7 +2,7 @@ import React from 'react';
 
 const Help = () => {
     return (
-        <div className="help">
+        <div className="help animate__animated animate__fadeInUp">
             <div className="grid grid-rows-[10vh_1fr]">
                 <h1 className="text-rose-500">Emergency</h1>
                 <div className="flex flex-col">

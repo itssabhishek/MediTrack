@@ -1,7 +1,7 @@
 import DatePicker from 'sassy-datepicker';
 const Dashboard = () => {
     return (
-        <div className="dashboard">
+        <div className="dashboard animate__animated animate__fadeInUp">
             <h1 className="text-[#219653]">
                 Hello, <span className="font-extralight">Abhishek</span>
             </h1>
