@@ -4,7 +4,7 @@ import Home from '../Components/Home/Home';
 import Edit from '../Components/SideNavComponents/Edit';
 import NewSchedule from '../Components/SideNavComponents/NewSchedule';
 import User from '../Components/SideNavComponents/User';
-import SignIn from '../Components/SIgnIn/SignIn';
+import SignIn from '../Components/SignIn/SignIn';
 import Dashboard from '../Components/Home/Pages/Dashboard';
 import HMShops from '../Components/Home/Pages/HMShops';
 import Products from '../Components/Home/Pages/Products';

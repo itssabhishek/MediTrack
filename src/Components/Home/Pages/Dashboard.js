@@ -1,9 +1,59 @@
 import DatePicker from 'sassy-datepicker';
+import { useEffect, useState } from 'react';
 const Dashboard = () => {
+    const dummyData = [
+        {
+            name: 'Abc',
+            time: '9.00',
+        },
+        {
+            name: 'efg',
+            time: '9.00',
+        },
+        {
+            name: 'dfgds',
+            time: '9.00',
+        },
+        {
+            name: 'dfgd',
+            time: '9.00',
+        },
+    ];
+
+    const checkHandler = (e) => {
+        e.target.parentNode.parentNode.remove();
+    };
+
+    const [name, setName] = useState('');
+
+    // This method fetches the name from the database.
+    useEffect(() => {
+        async function getRecords() {
+            const currentUserEmail = localStorage.getItem('userEmail');
+            const response = await fetch(
+                `http://localhost:5000/record/${currentUserEmail}`
+            );
+
+            if (!response.ok) {
+                const message = `An error occurred: ${response.statusText}`;
+                window.alert(message);
+                return;
+            }
+
+            const name = await response.json();
+            setName(name.name);
+        }
+
+        getRecords();
+    }, [name.length]);
+
     return (
         <div className="dashboard animate__animated animate__fadeInUp">
             <h1 className="text-[#219653]">
-                Hello, <span className="font-extralight">Abhishek</span>
+                Hello,{' '}
+                <span className="font-extralight">
+                    {name.substring(0, name.indexOf(' '))}
+                </span>
             </h1>
 
             <div className="activity grid grid-cols-12 mb-4 gap-2">
@@ -99,48 +149,32 @@ const Dashboard = () => {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr className=" even:border-white border-y border-white">
-                                                    <td className="text-sm text-white font-medium px-6 py-2 whitespace-nowrap">
-                                                        Abc
-                                                    </td>
-                                                    <td className="text-sm text-white font-light px-6 py-2 whitespace-nowrap border-x">
-                                                        9.00 PM
-                                                    </td>
-                                                    <td className="text-sm text-white font-light px-6 py-2 whitespace-nowrap">
-                                                        <input
-                                                            type="checkbox"
-                                                            className="h-4 w-4"
-                                                        />
-                                                    </td>
-                                                </tr>
-                                                <tr className=" even:border-white border-y border-white">
-                                                    <td className="text-sm text-white font-medium px-6 py-2 whitespace-nowrap">
-                                                        Abc
-                                                    </td>
-                                                    <td className="text-sm text-white font-light px-6 py-2 whitespace-nowrap border-x">
-                                                        9.00 PM
-                                                    </td>
-                                                    <td className="text-sm text-white font-light px-6 py-2 whitespace-nowrap">
-                                                        <input
-                                                            type="checkbox"
-                                                            className="h-4 w-4"
-                                                        />
-                                                    </td>
-                                                </tr>
-                                                <tr className=" even:border-white border-y border-white">
-                                                    <td className="text-sm text-white font-medium px-6 py-2 whitespace-nowrap">
-                                                        Abc
-                                                    </td>
-                                                    <td className="text-sm text-white font-light px-6 py-2 whitespace-nowrap border-x">
-                                                        9.00 PM
-                                                    </td>
-                                                    <td className="text-sm text-white font-light px-6 py-2 whitespace-nowrap">
-                                                        <input
-                                                            type="checkbox"
-                                                            className="h-4 w-4"
-                                                        />
-                                                    </td>
-                                                </tr>
+                                                {dummyData.map(
+                                                    ({ name, time }, index) => {
+                                                        return (
+                                                            <tr
+                                                                className="even:border-white border-y border-white"
+                                                                key={index}
+                                                            >
+                                                                <td className="text-sm text-white font-medium px-6 py-2 whitespace-nowrap">
+                                                                    {name}
+                                                                </td>
+                                                                <td className="text-sm text-white font-light px-6 py-2 whitespace-nowrap border-x">
+                                                                    {time} PM
+                                                                </td>
+                                                                <td className="text-sm text-white font-light px-6 py-2 whitespace-nowrap">
+                                                                    <input
+                                                                        type="checkbox"
+                                                                        className="h-4 w-4"
+                                                                        onClick={
+                                                                            checkHandler
+                                                                        }
+                                                                    />
+                                                                </td>
+                                                            </tr>
+                                                        );
+                                                    }
+                                                )}
                                             </tbody>
                                         </table>
                                     </div>
