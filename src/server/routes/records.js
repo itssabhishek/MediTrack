@@ -62,13 +62,11 @@ recordRoutes.route('/record/add').post(function (req, response) {
 recordRoutes.route('/update/:id').post(function (req, response) {
     let db_connect = dbo.getDb();
     let myquery = { email: req.params.id };
-    let newvalues = {
-        $set: {
-            googleId: req.body.googleId,
-            name: req.body.name,
-            email: req.body.email,
-        },
-    };
+
+    console.log(req.body);
+    db_connect
+        .collection('users')
+        .updateOne(myquery, { $push: { schedule: req.body } });
 });
 
 // This section will help you delete a record

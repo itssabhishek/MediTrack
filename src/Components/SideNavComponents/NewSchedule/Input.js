@@ -1,7 +1,8 @@
 import { useState } from 'react';
 
-const Input = ({ type, id, placeholder }) => {
+const Input = ({ type, id, placeholder, application }) => {
     const [input, setInput] = useState('');
+
     return (
         <div className="input h-[50px] relative">
             <input
