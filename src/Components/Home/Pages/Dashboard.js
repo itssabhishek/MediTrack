@@ -1,5 +1,6 @@
 import DatePicker from 'sassy-datepicker';
 import { useEffect, useState } from 'react';
+
 const Dashboard = () => {
     const dummyData = [
         {
@@ -24,9 +25,16 @@ const Dashboard = () => {
         e.target.parentNode.parentNode.remove();
     };
 
-    const [name, setName] = useState('');
+    const [value, setValue] = useState({
+        name: '',
+        schedule: [
+            {
+                mName: '',
+            },
+        ],
+    });
 
-    // This method fetches the name from the database.
+    // This method fetches the value from the database.
     useEffect(() => {
         async function getRecords() {
             const currentUserEmail = localStorage.getItem('userEmail');
@@ -40,19 +48,22 @@ const Dashboard = () => {
                 return;
             }
 
-            const name = await response.json();
-            setName(name.name);
+            const returnedData = await response.json();
+            setValue({
+                name: returnedData.name,
+                schedule: returnedData.schedule[0],
+            });
         }
 
-        getRecords();
-    }, [name.length]);
+        getRecords().then((r) => r);
+    }, [value.name]);
 
     return (
         <div className="dashboard animate__animated animate__fadeInUp">
             <h1 className="text-[#219653]">
                 Hello,{' '}
                 <span className="font-extralight">
-                    {name.substring(0, name.indexOf(' '))}
+                    {value.name.substring(0, value.name.indexOf(' '))}
                 </span>
             </h1>
 
@@ -80,10 +91,10 @@ const Dashboard = () => {
                             </svg>
                         </div>
                         <h3 className="font-extrabold text-4xl text-[#127780]">
-                            Medicine Name (stock)
+                            {`${value.schedule[0].mName} (${value.schedule[0].mStock})`}
                         </h3>
-                        <h5 className="font-light text-blue-700">Time</h5>
-                        <h5 className="font-light text-blue-700">Dosage</h5>
+                        <h5 className="font-light text-blue-700">{`Time: ${value.schedule[0].mTime}`}</h5>
+                        <h5 className="font-light text-blue-700">{`Doses: ${value.schedule[0].mDoses}`}</h5>
                         <h5 className="font-light text-blue-700">
                             Description
                         </h5>
@@ -204,13 +215,23 @@ const Dashboard = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr className={'border-b-2 border-gray-500'}>
-                                <td className={'px-2'}>ABC</td>
-                                <td>07:00</td>
-                                <td>1</td>
-                                <td>5</td>
-                                <td>Lorem ipsum dolor sit amet, consectetur</td>
-                            </tr>
+                            {value.schedule.map((el, index) => {
+                                return (
+                                    <tr
+                                        className={'border-b-2 border-gray-500'}
+                                        key={index}
+                                    >
+                                        <td className={'px-2'}>{el.mName}</td>
+                                        <td>{el.mTime}</td>
+                                        <td>{el.mDoses}</td>
+                                        <td>{el.mStock}</td>
+                                        <td>
+                                            Lorem ipsum dolor sit amet,
+                                            consectetur
+                                        </td>
+                                    </tr>
+                                );
+                            })}
                         </tbody>
                     </table>
                 </div>

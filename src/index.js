@@ -8,7 +8,6 @@ import Routing from './Router/Router';
 //Main React Code
 ReactDOM.render(<Routing />, document.getElementById('root'));
 
-// Custom code
 // Highlight selected page link on Topnav
 const navLink = document.querySelector('.nav_items');
 const navLinks = document.querySelectorAll('.nav_item');

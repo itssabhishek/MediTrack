@@ -41,6 +41,7 @@ const NewSchedule = () => {
 
     async function handleSubmit(e) {
         e.preventDefault();
+        medicineArray.some((a, b) => a.mTime - b.mTime);
         alert(
             'Medicine schedule has been submitted. Please return to home page.'
         );
