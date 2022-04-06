@@ -1,6 +1,12 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import { GoogleLogout } from 'react-google-login';
 
 const Sidenav = function () {
+    const logout = () => {
+        localStorage.removeItem('userEmail');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('jwt');
+    };
     return (
         <div
             className={`group navbar_side bg-white flex flex-col py-3 items-center hover:px-4 justify-evenly vh-100`}
@@ -76,12 +82,21 @@ const Sidenav = function () {
                     </li>
                     <li className="sidenav_options--list hover:bg-green-200 mt-4 p-2 rounded">
                         <Link
-                            to="/user"
+                            to="/"
                             className="text-black text-lg no-underline font-medium flex gap-2 items-center justify-between"
                         >
-                            <p className="hidden group-hover:inline m-0">
-                                User
-                            </p>
+                            <GoogleLogout
+                                clientId="288536530772-8des996l5mafrbti3lusb8oip9qtbh4r.apps.googleusercontent.com"
+                                render={(renderProps) => (
+                                    <p
+                                        onClick={renderProps.onClick}
+                                        className="hidden group-hover:inline m-0 transition-all duration-1000"
+                                    >
+                                        Logout
+                                    </p>
+                                )}
+                                onLogoutSuccess={logout}
+                            />
 
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"

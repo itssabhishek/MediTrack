@@ -1,8 +1,16 @@
 import { Link } from 'react-router-dom';
 const Topnav = () => {
+    const clickHandler = (e) => {
+        const a = e.target.closest('.nav_items').querySelectorAll('.nav_item ');
+        a.forEach((el) => el.classList.remove('!text-yellow-400'));
+        e.target.classList.add('!text-yellow-400');
+    };
     return (
         <nav className="navbar_top flex bg-slate-800 ">
-            <ul className="nav_items w-4/6 flex h-full justify-between items-center m-0">
+            <ul
+                onClick={clickHandler}
+                className="nav_items w-4/6 flex h-full justify-between items-center m-0"
+            >
                 <li>
                     <img
                         src={'/images/MediTrackIcon.png'}
@@ -52,4 +60,5 @@ const Topnav = () => {
         </nav>
     );
 };
+
 export default Topnav;

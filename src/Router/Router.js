@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from '../Components/Home/Home';
 import Edit from '../Components/SideNavComponents/Edit';
 import NewSchedule from '../Components/SideNavComponents/NewSchedule';
-import User from '../Components/SideNavComponents/User';
 import SignIn from '../Components/SignIn/SignIn';
 import Dashboard from '../Components/Home/Pages/Dashboard';
 import HMShops from '../Components/Home/Pages/HMShops';
@@ -23,7 +22,6 @@ function Routing() {
                 </Route>
                 <Route exact path="/new" element={<NewSchedule />} />
                 <Route exact path="/edit" element={<Edit />} />
-                <Route exact path="/user" element={<User />} />
                 <Route exact path="/home/dashboard" element={<SignIn />} />
             </Routes>
         </BrowserRouter>
