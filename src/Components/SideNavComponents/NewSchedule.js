@@ -1,16 +1,12 @@
 import classes from './NewSchedule.module.css';
 import Footer from '../Footer/Footer';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Toast from '../Notification/Toast';
-
-const toastShower = () => {
-    const toastElement = document.querySelector('.toast_container');
-    toastElement.classList.toggle('hidden');
-    setTimeout(() => toastElement.classList.toggle('hidden'), 2000);
-};
+import { useNavigate } from 'react-router-dom';
 
 const medicineArray = [];
 const NewSchedule = () => {
+    let navigate = useNavigate();
     const [medicineDatails, setMedicineDetails] = useState({
         mName: '',
         mDoses: '',
@@ -18,6 +14,7 @@ const NewSchedule = () => {
         mTime: '',
     });
 
+    //To take values from Input
     const changeHandler = (e) => {
         setMedicineDetails((preValues) => {
             return {
@@ -27,38 +24,72 @@ const NewSchedule = () => {
         });
     };
 
-    const addMedicine = () => {
-        medicineArray.push(medicineDatails);
-        setMedicineDetails({
-            mName: '',
-            mDoses: '',
-            mStock: '',
-            mTime: '',
-        });
-
-        toastShower();
+    //Notify Toast Viewer
+    const [showNotifyToast, setShowNotifyToastValue] = useState(false);
+    const notifyToasterShower = () => {
+        setShowNotifyToastValue(!showNotifyToast);
+        setTimeout(() => setShowNotifyToastValue(showNotifyToast), 2000);
     };
 
+    //Add medicines in MedicineArray
+    const addMedicine = () => {
+        if (
+            medicineDatails.mName &&
+            medicineDatails.mDoses &&
+            medicineDatails.mStock &&
+            medicineDatails.mTime
+        ) {
+            if (+medicineDatails.mDoses > +medicineDatails.mStock) {
+                alert("Invalid entry. Doses couldn't be more than stock");
+            } else {
+                notifyToasterShower();
+                console.log(medicineDatails);
+                medicineArray.push(medicineDatails);
+                setMedicineDetails({
+                    mName: '',
+                    mDoses: '',
+                    mStock: '',
+                    mTime: '',
+                });
+            }
+        } else {
+            alert('Please enter details correctly');
+        }
+    };
+
+    //Success Toast Viewer
+    const [showSuccessToast, setShowSuccessToastValue] = useState(false);
+    const successToasterShower = () => {
+        setShowSuccessToastValue(!showSuccessToast);
+        setTimeout(() => successToasterShower(showSuccessToast), 2000);
+    };
+
+    //Send MedicineArray to Database
     async function handleSubmit(e) {
         e.preventDefault();
-        medicineArray.sort(
-            (a, b) => a.mTime.substring(0, 2) - b.mTime.substring(0, 2)
-        );
-        alert(
-            'Medicine schedule has been submitted. Please return to home page.'
-        );
-
-        // This will send a post request to update the data in the database.
-        await fetch(
-            `http://localhost:5000/update/${localStorage.getItem('userEmail')}`,
-            {
-                method: 'POST',
-                body: JSON.stringify(medicineArray),
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            }
-        );
+        console.log(medicineArray.length);
+        if (medicineArray.length) {
+            medicineArray.sort(
+                (a, b) => a.mTime.substring(0, 2) - b.mTime.substring(0, 2)
+            );
+            successToasterShower();
+            setTimeout(() => navigate('/home', { replace: true }), 3000);
+            // This will send a post request to update the data in the database.
+            await fetch(
+                `http://localhost:5000/update/${localStorage.getItem(
+                    'userEmail'
+                )}`,
+                {
+                    method: 'POST',
+                    body: JSON.stringify(medicineArray),
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                }
+            );
+        } else {
+            alert('Please enter some details');
+        }
     }
 
     return (
@@ -74,6 +105,7 @@ const NewSchedule = () => {
                             type="text"
                             id="mName"
                             placeholder="Medicine Name"
+                            required
                             value={medicineDatails.mName}
                             onChange={changeHandler}
                             className="input_text peer h-full w-full rounded outline-2 outline-green-600 border-2 border-blue-500 indent-3 text-lg absolute"
@@ -93,6 +125,7 @@ const NewSchedule = () => {
                             type="number"
                             id="mDoses"
                             placeholder="Doses"
+                            required
                             value={medicineDatails.mDoses}
                             onChange={changeHandler}
                             className="input_text peer h-full w-full rounded outline-2 outline-green-600 border-2 border-blue-500 indent-3 text-lg absolute"
@@ -113,6 +146,7 @@ const NewSchedule = () => {
                             type="number"
                             id="mStock"
                             placeholder="Stock"
+                            required
                             value={medicineDatails.mStock}
                             onChange={changeHandler}
                             className="input_text peer h-full w-full rounded outline-2 outline-green-600 border-2 border-blue-500 indent-3 text-lg absolute"
@@ -133,11 +167,9 @@ const NewSchedule = () => {
                             type="time"
                             id="mTime"
                             placeholder="Time"
+                            required
                             value={medicineDatails.mTime}
                             onChange={changeHandler}
-                            onInput={(ev) =>
-                                (medicineDatails.mTime = ev.target.value)
-                            }
                             className="input_text peer h-full w-full rounded outline-2 outline-green-600 border-2 border-blue-500 indent-3 text-lg absolute"
                         />
                         <label
@@ -168,19 +200,23 @@ const NewSchedule = () => {
                 </form>
                 <img src={'/images/new.jpg'} alt="NewImage" />
 
-                <Toast
-                    type="notify"
-                    heading={'Added'}
-                    message={'You can add more medicine'}
-                />
+                {showNotifyToast && (
+                    <Toast
+                        type="notify"
+                        heading={'Added'}
+                        message={'You can add more medicine'}
+                    />
+                )}
 
-                {/*<Toast*/}
-                {/*    type="success"*/}
-                {/*    heading={'Submitted'}*/}
-                {/*    message={*/}
-                {/*        'Your schedule is created😀. Now you can go back to home page'*/}
-                {/*    }*/}
-                {/*/>*/}
+                {showSuccessToast && (
+                    <Toast
+                        type="success"
+                        heading={'Submitted'}
+                        message={
+                            'Your schedule is created😀. You will be redirected to Home page.'
+                        }
+                    />
+                )}
             </div>
             <Footer />
         </div>

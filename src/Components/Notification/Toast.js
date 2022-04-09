@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
-
 const NotifyToast = ({ heading, message }) => {
+    const clickHandler = (e) => {
+        e.target.closest('.toast_container').remove();
+    };
     return (
         <div
-            className="bg-blue-600 shadow-lg mx-auto w-96 max-w-full text-sm pointer-events-auto bg-clip-padding rounded-lg block mb-3"
+            className=" bg-blue-600 shadow-lg mx-auto w-96 max-w-full text-sm pointer-events-auto bg-clip-padding rounded-lg block mb-3"
             id="static-example"
             role="alert"
             aria-live="assertive"
@@ -38,6 +39,7 @@ const NotifyToast = ({ heading, message }) => {
                         className="btn-close btn-close-white box-content w-4 h-4 ml-2 text-white border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-white hover:opacity-75 hover:no-underline"
                         data-mdb-dismiss="toast"
                         aria-label="Close"
+                        onClick={clickHandler}
                     />
                 </div>
             </div>
@@ -49,6 +51,9 @@ const NotifyToast = ({ heading, message }) => {
 };
 
 const SuccessToast = ({ heading, message }) => {
+    const clickHandler = (e) => {
+        e.target.closest('.toast_container').remove();
+    };
     return (
         <div
             className="bg-green-500 shadow-lg mx-auto w-96 max-w-full text-sm pointer-events-auto bg-clip-padding rounded-lg block mb-3"
@@ -86,6 +91,7 @@ const SuccessToast = ({ heading, message }) => {
                         className="btn-close btn-close-white box-content w-4 h-4 ml-2 text-white border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-white hover:opacity-75 hover:no-underline"
                         data-mdb-dismiss="toast"
                         aria-label="Close"
+                        onClick={clickHandler}
                     />
                 </div>
             </div>
@@ -98,7 +104,7 @@ const SuccessToast = ({ heading, message }) => {
 
 const Toast = ({ type, heading, message }) => {
     return (
-        <div className="toast_container absolute hidden top-1 right-1 flex flex-col justify-end">
+        <div className="toast_container absolute top-1 right-1 flex flex-col justify-end">
             {type === 'notify' && (
                 <NotifyToast heading={heading} message={message} />
             )}

@@ -37,14 +37,15 @@ const Dashboard = () => {
 
     //Current time
     const Time = new Date();
-    const timeWithPossibleBug = `${Time.getHours()}:${Time.getMinutes()}`;
+    const currentHour = Time.getHours();
+    const currentMinute = Time.getMinutes();
 
-    //To fix bug
-    const currentTime =
-        timeWithPossibleBug.length === 4
-            ? '0'.concat(timeWithPossibleBug)
-            : timeWithPossibleBug;
+    //To fix potential bug we added padStart method
+    const currentTime = `${currentHour
+        .toString()
+        .padStart(2, '0')}:${currentMinute.toString().padStart(2, '0')}`;
 
+    console.log(currentTime);
     //Upcoming Medicines array
     const [upcomingMedicine, setUpcomingMedicine] = useState(
         value.schedule.filter((el) => el.mTime > currentTime)
@@ -59,7 +60,6 @@ const Dashboard = () => {
     const [leftMedicine, setLeftMedicine] = useState(
         value.schedule.filter((el) => el.mTime <= currentTime)
     );
-    console.log(leftMedicine);
 
     useEffect(() => {
         setLeftMedicine(value.schedule.filter((el) => el.mTime <= currentTime));
