@@ -12,7 +12,6 @@ const Dashboard = () => {
     });
 
     // This method fetches the value from the database.
-
     useEffect(() => {
         async function getRecords() {
             const currentUserEmail = localStorage.getItem('userEmail');
@@ -34,25 +33,49 @@ const Dashboard = () => {
         }
 
         getRecords().then((r) => r);
-    }, [value.name, value.schedule]);
+    }, [value.name]);
 
     //Current time
     const Time = new Date();
-    const currentTime = `${Time.getHours()}:${Time.getMinutes()}`;
+    const timeWithPossibleBug = `${Time.getHours()}:${Time.getMinutes()}`;
+
+    //To fix bug
+    const currentTime =
+        timeWithPossibleBug.length === 4
+            ? '0'.concat(timeWithPossibleBug)
+            : timeWithPossibleBug;
 
     //Upcoming Medicines array
-    let upcomingMedicine = value.schedule.filter(
-        (el) => el.mTime > currentTime
+    const [upcomingMedicine, setUpcomingMedicine] = useState(
+        value.schedule.filter((el) => el.mTime > currentTime)
     );
+    useEffect(() => {
+        setUpcomingMedicine(
+            value.schedule.filter((el) => el.mTime > currentTime)
+        );
+    }, [value.schedule]);
 
     //Left Medicines array
-    let leftMedicine = value.schedule.filter((el) => el.mTime <= currentTime);
+    const [leftMedicine, setLeftMedicine] = useState(
+        value.schedule.filter((el) => el.mTime <= currentTime)
+    );
+    console.log(leftMedicine);
 
-    //Remove medicine from leftMedicine array
+    useEffect(() => {
+        setLeftMedicine(value.schedule.filter((el) => el.mTime <= currentTime));
+    }, [value.schedule]);
+
     const checkHandler = (e) => {
-        e.target.parentNode.parentNode.remove();
+        const takenMedicine = e.target
+            .closest('tr')
+            .querySelector('.missedMedicineName').textContent;
+
+        setLeftMedicine(
+            leftMedicine.filter((el) => el.mName !== takenMedicine)
+        );
     };
 
+    //UI
     return (
         <div className="dashboard animate__animated animate__fadeInUp">
             <h1 className="text-[#219653]">
@@ -61,7 +84,6 @@ const Dashboard = () => {
                     {value.name.substring(0, value.name.indexOf(' '))}
                 </span>
             </h1>
-
             <div className="activity grid grid-cols-12 mb-4 gap-2">
                 <div className={'activity col-span-4 h-[320px]'}>
                     <p>Activity:</p>
@@ -168,7 +190,7 @@ const Dashboard = () => {
                                     </svg>
                                 </div>
                                 <h3 className="font-extrabold text-4xl text-yellow-900">
-                                    Missed Medicines (No)
+                                    Missed Medicines {leftMedicine.length}
                                 </h3>
                                 <div className="flex flex-col">
                                     <div className="overflow-hidden">
@@ -202,12 +224,12 @@ const Dashboard = () => {
                                                             (el, index) => {
                                                                 return (
                                                                     <tr
-                                                                        className="even:border-white border-y border-white"
+                                                                        className="missedMedicineContainer even:border-white border-y border-white"
                                                                         key={
                                                                             index
                                                                         }
                                                                     >
-                                                                        <td className="text-sm text-white font-medium px-6 py-2 whitespace-nowrap">
+                                                                        <td className="missedMedicineName text-sm text-white font-medium px-6 py-2 whitespace-nowrap">
                                                                             {
                                                                                 el.mName
                                                                             }
@@ -215,8 +237,7 @@ const Dashboard = () => {
                                                                         <td className="text-sm text-white font-light px-6 py-2 whitespace-nowrap border-x">
                                                                             {
                                                                                 el.mTime
-                                                                            }{' '}
-                                                                            PM
+                                                                            }
                                                                         </td>
                                                                         <td className="text-sm text-white font-light px-6 py-2 whitespace-nowrap">
                                                                             <input

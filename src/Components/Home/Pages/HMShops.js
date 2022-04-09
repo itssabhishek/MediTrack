@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import GoogleMapReact from 'google-map-react';
 import Input from '../../SideNavComponents/NewSchedule/Input';
 
 const HmShops = () => {
+    const [currentLocation, setCurrentLocation] = useState({
+        lat: 19.0842,
+        lng: 72.8851,
+    });
+
+    const submitHandler = (e) => {
+        e.preventDefault();
+        setCurrentLocation(currentLocation);
+    };
+
     return (
         <div className="grid grid-rows-[10vh_1fr] animate__animated animate__fadeInUp">
             <h1 className="text-[#219653]">
@@ -25,38 +36,10 @@ const HmShops = () => {
                                 id={'range'}
                             />
                         </div>
-                        <div className="checkboxes flex justify-between w-2/3 mt-10 px-9">
-                            <div className="checkbox flex items-center">
-                                <input
-                                    type="checkbox"
-                                    id="hospitals"
-                                    name="hospitals"
-                                    value="hospitals"
-                                    className="peer w-5 h-5 bg-green-500"
-                                />
-                                <label
-                                    htmlFor="hospitals"
-                                    className="pl-1 text-blue-700 peer-checked:text-green-700"
-                                >
-                                    Show Hospitals
-                                </label>
-                            </div>
-                            <div className="checkbox flex items-center">
-                                <input
-                                    type="checkbox"
-                                    id="medical"
-                                    name="medical"
-                                    value="medical"
-                                    className="peer w-5 h-5"
-                                />
-                                <label
-                                    htmlFor="medical"
-                                    className=" pl-1 text-blue-700 peer-checked:text-green-700"
-                                >
-                                    Show Medical shops
-                                </label>
-                            </div>
-                        </div>
+
+                        <button type={'submit'} onClick={submitHandler}>
+                            Go
+                        </button>
                     </form>
                     <div className="flex flex-col">
                         <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -141,11 +124,13 @@ const HmShops = () => {
                         </div>
                     </div>
                 </div>
-                <div>
-                    <img
-                        src="http://www.phpflow.com/wp-content/uploads/2018/01/google-map-api-with-php.png"
-                        align="right"
-                        alt="Map"
+                <div id="map">
+                    <GoogleMapReact
+                        bootstrapURLKeys={{
+                            key: 'AIzaSyApjohiZAhnDNx4Ngt4Jg08k_A-kyv09Fc',
+                        }}
+                        defaultCenter={currentLocation}
+                        defaultZoom={11}
                     />
                 </div>
             </div>
