@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 function SignIn() {
     let navigate = useNavigate();
 
+    //To Handle login
     const handleLogin = async (res) => {
         const newUser = {
             googleId: res.profileObj.googleId,
@@ -13,9 +14,11 @@ function SignIn() {
             email: res.profileObj.email,
         };
 
+        //Save user credentials in Local Storage
         localStorage.setItem('jwt', res.tokenId);
         localStorage.setItem('userEmail', res.profileObj.email);
 
+        //Request to add new user in Database
         await fetch('http://localhost:5000/record/add', {
             method: 'POST',
             headers: {
@@ -27,7 +30,25 @@ function SignIn() {
             return;
         });
 
-        navigate('/home', { replace: true });
+        //To check if user has any ongoing schedule
+        const currentUserEmail = res.profileObj.email;
+        //Get user data
+        const response = await fetch(
+            `http://localhost:5000/record/${currentUserEmail}`
+        );
+
+        if (!response.ok) {
+            const message = `An error occurred: ${response.statusText}`;
+            window.alert(message);
+            return;
+        }
+
+        const returnedData = await response.json();
+
+        //Redirect to home if any schedule is ongoing else redirect to new page
+        returnedData.schedule
+            ? navigate('/home', { replace: true })
+            : navigate('/new', { replace: true });
     };
     const handleFailure = () => {
         navigate('/', { replace: true });

@@ -45,7 +45,6 @@ const Dashboard = () => {
         .toString()
         .padStart(2, '0')}:${currentMinute.toString().padStart(2, '0')}`;
 
-    console.log(currentTime);
     //Upcoming Medicines array
     const [upcomingMedicine, setUpcomingMedicine] = useState(
         value.schedule.filter((el) => el.mTime > currentTime)

@@ -1,6 +1,6 @@
 import classes from './NewSchedule.module.css';
 import Footer from '../Footer/Footer';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Toast from '../Notification/Toast';
 import { useNavigate } from 'react-router-dom';
 
@@ -43,7 +43,6 @@ const NewSchedule = () => {
                 alert("Invalid entry. Doses couldn't be more than stock");
             } else {
                 notifyToasterShower();
-                console.log(medicineDatails);
                 medicineArray.push(medicineDatails);
                 setMedicineDetails({
                     mName: '',
@@ -94,9 +93,14 @@ const NewSchedule = () => {
 
     return (
         <div className="bg-white animate__animated animate__fadeInUp">
-            <h1 className="p-3 font-light text-green-600">Add new schedule</h1>
+            <h1 className="p-3 font-medium text-green-600">
+                Welcome,{' '}
+                <p className=" inline font-light text-blue-800">
+                    Please add a schedule to get started
+                </p>
+            </h1>
 
-            <div className="main grid grid-cols-2 grid-rows-[84vh] items-stretch">
+            <div className="main grid grid-cols-2 grid-rows-[79vh] items-stretch">
                 <form
                     className={`${classes.wrapper} border-1 border-grey-500 shadow`}
                 >

@@ -10,11 +10,6 @@ function Edit() {
             </p>
             <div className="edit_table">
                 <Accordion id="item1" parent="first" heading="First Schedule" />
-                <Accordion
-                    id="item2"
-                    parent="second"
-                    heading="Second Schedule"
-                />
             </div>
         </div>
     );

@@ -40,7 +40,7 @@ const ProductsItems = [
         img: 'icons8-bandage-50.png',
         heading: 'Firstaid',
         description:
-            'First aid is the first and immediate assistance given to any person suffering from either a minor or serious illness or injury,[1] with care provided to preserve life, prevent the condition from worsening, or to promote recovery. ',
+            'First aid is the first and immediate assistance given to any person suffering from either a minor or serious illness or injury, with care provided to preserve life, prevent the condition from worsening, or to promote recovery. ',
         link: 'https://www.amazon.in/First-Aid-Kit/s?k=First+Aid+Kit',
     },
 ];
@@ -81,7 +81,9 @@ const Modal = ({ img, heading, description, link }) => {
                         </svg>
                     </a>
                 </div>
-                <p className="description text-gray-500">{description}</p>
+                <p className="description text-gray-500 text-[12px]">
+                    {description}
+                </p>
             </div>
         </div>
     );
