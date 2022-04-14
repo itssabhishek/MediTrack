@@ -3,6 +3,7 @@ import Footer from '../Footer/Footer';
 import { useState } from 'react';
 import Toast from '../Notification/Toast';
 import { useNavigate } from 'react-router-dom';
+import Input from './NewSchedule/Input';
 
 const medicineArray = [];
 const NewSchedule = () => {
@@ -75,7 +76,7 @@ const NewSchedule = () => {
             setTimeout(() => navigate('/home', { replace: true }), 3000);
             // This will send a post request to update the data in the database.
             await fetch(
-                `http://localhost:5000/update/${localStorage.getItem(
+                `http://localhost:5000/insert/${localStorage.getItem(
                     'userEmail'
                 )}`,
                 {
@@ -100,93 +101,44 @@ const NewSchedule = () => {
                 </p>
             </h1>
 
-            <div className="main grid grid-cols-2 grid-rows-[79vh] items-stretch">
+            <div className="main grid grid-cols-2 grid-rows-[84vh] items-stretch">
                 <form
                     className={`${classes.wrapper} border-1 border-grey-500 shadow`}
                 >
-                    <div className="input h-[50px] relative">
-                        <input
-                            type="text"
-                            id="mName"
-                            placeholder="Medicine Name"
-                            required
-                            value={medicineDatails.mName}
-                            onChange={changeHandler}
-                            className="input_text peer h-full w-full rounded outline-2 outline-green-600 border-2 border-blue-500 indent-3 text-lg absolute"
-                        />
-                        <label
-                            htmlFor="mName"
-                            className={`${
-                                medicineDatails.mName ? 'inline' : 'hidden'
-                            } peer-focus:inline text-sm text-gray-500 absolute ml-3 -mt-3 bg-white p-1`}
-                        >
-                            Medicine Name
-                        </label>
-                    </div>
+                    <Input
+                        type="text"
+                        id="mName"
+                        placeholder="Medicine Name"
+                        required
+                        value={medicineDatails.mName}
+                        onChange={changeHandler}
+                    />
+                    <Input
+                        type="number"
+                        id="mDoses"
+                        placeholder="Doses"
+                        required
+                        value={medicineDatails.mDoses}
+                        onChange={changeHandler}
+                    />
 
-                    <div className="input h-[50px] relative">
-                        <input
-                            type="number"
-                            id="mDoses"
-                            placeholder="Doses"
-                            required
-                            value={medicineDatails.mDoses}
-                            onChange={changeHandler}
-                            className="input_text peer h-full w-full rounded outline-2 outline-green-600 border-2 border-blue-500 indent-3 text-lg absolute"
-                        />
-                        <label
-                            htmlFor="mDoses"
-                            className={`
-                            ${
-                                medicineDatails.mDoses ? 'inline' : 'hidden'
-                            } peer-focus:inline text-sm text-gray-500 absolute ml-3 -mt-3 bg-white p-1`}
-                        >
-                            Doses
-                        </label>
-                    </div>
+                    <Input
+                        type="number"
+                        id="mStock"
+                        placeholder="Stock"
+                        required
+                        value={medicineDatails.mStock}
+                        onChange={changeHandler}
+                    />
 
-                    <div className="input h-[50px] relative">
-                        <input
-                            type="number"
-                            id="mStock"
-                            placeholder="Stock"
-                            required
-                            value={medicineDatails.mStock}
-                            onChange={changeHandler}
-                            className="input_text peer h-full w-full rounded outline-2 outline-green-600 border-2 border-blue-500 indent-3 text-lg absolute"
-                        />
-                        <label
-                            htmlFor="mStock"
-                            className={`
-                            ${
-                                medicineDatails.mStock ? 'inline' : 'hidden'
-                            } peer-focus:inline text-sm text-gray-500 absolute ml-3 -mt-3 bg-white p-1`}
-                        >
-                            Stock
-                        </label>
-                    </div>
-
-                    <div className="input h-[50px] relative">
-                        <input
-                            type="time"
-                            id="mTime"
-                            placeholder="Time"
-                            required
-                            value={medicineDatails.mTime}
-                            onChange={changeHandler}
-                            className="input_text peer h-full w-full rounded outline-2 outline-green-600 border-2 border-blue-500 indent-3 text-lg absolute"
-                        />
-                        <label
-                            htmlFor="mTime"
-                            className={`
-                            ${
-                                medicineDatails.mTime ? 'inline' : 'hidden'
-                            } peer-focus:inline text-sm text-gray-500 absolute ml-3 -mt-3 bg-white p-1`}
-                        >
-                            Time
-                        </label>
-                    </div>
-
+                    <Input
+                        type="time"
+                        id="mTime"
+                        placeholder="Time"
+                        required
+                        value={medicineDatails.mTime}
+                        onChange={changeHandler}
+                    />
                     <div className="buttons flex h-12">
                         <input
                             type="submit"

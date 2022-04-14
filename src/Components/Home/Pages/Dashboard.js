@@ -1,7 +1,9 @@
 import DatePicker from 'sassy-datepicker';
 import { useEffect, useState } from 'react';
 
+const takenMedicineArray = [];
 const Dashboard = () => {
+    //Initial values of Name and Schedule
     const [value, setValue] = useState({
         name: '',
         schedule: [
@@ -28,13 +30,14 @@ const Dashboard = () => {
             const returnedData = await response.json();
             setValue({
                 name: returnedData.name,
-                schedule: returnedData.schedule[0],
+                schedule: returnedData.schedule,
             });
         }
 
         getRecords().then((r) => r);
-    }, [value.name]);
+    }, [value]);
 
+    console.log(value.schedule);
     //Current time
     const Time = new Date();
     const currentHour = Time.getHours();
@@ -53,35 +56,68 @@ const Dashboard = () => {
         setUpcomingMedicine(
             value.schedule.filter((el) => el.mTime > currentTime)
         );
-    }, [value.schedule]);
+    }, [value]);
 
-    //Left Medicines array
-    const [leftMedicine, setLeftMedicine] = useState(
-        value.schedule.filter((el) => el.mTime <= currentTime)
-    );
+    //Logic to show LeftMedicine
+    //Loop through takenMedicine array and check if any taken medicine is present
+    function checkedMedicine(mName) {
+        let sum = 0;
+        for (const name of takenMedicineArray) {
+            if (name === mName) sum++;
+        }
+        return sum;
+    }
 
+    //Initial value of leftMedicine array
+    const [leftMedicine, setLeftMedicine] = useState({});
+
+    //Update leftMedicine array value
     useEffect(() => {
-        setLeftMedicine(value.schedule.filter((el) => el.mTime <= currentTime));
-    }, [value.schedule]);
+        setLeftMedicine(
+            value.schedule.filter(
+                (el) => el.mTime <= currentTime && !checkedMedicine(el.mName)
+            )
+        );
+    }, [value]);
 
-    const checkHandler = (e) => {
+    console.log(leftMedicine);
+
+    //Checkbox Handler
+    async function checkHandler(e) {
         const takenMedicine = e.target
             .closest('tr')
             .querySelector('.missedMedicineName').textContent;
 
+        takenMedicineArray.push(takenMedicine);
+        console.log(takenMedicine);
+        console.log(takenMedicineArray);
+        const medicineWhoseStockIsToUpdate = value.schedule.filter(
+            (el) => el.mName === takenMedicine
+        );
+
+        await fetch(
+            `http://localhost:5000/update/${localStorage.getItem('userEmail')}`,
+            {
+                method: 'POST',
+                body: JSON.stringify(medicineWhoseStockIsToUpdate),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }
+        ).then((response) => console.log(response));
+
         setLeftMedicine(
             leftMedicine.filter((el) => el.mName !== takenMedicine)
         );
-    };
+        console.log(leftMedicine);
+    }
 
     //UI
     return (
         <div className="dashboard animate__animated animate__fadeInUp">
             <h1 className="text-[#219653]">
-                Hello,{' '}
-                <span className="font-extralight">
-                    {value.name.substring(0, value.name.indexOf(' '))}
-                </span>
+                <span className="font-extralight">Hello, </span>
+                {value.name.substring(0, value.name.indexOf(' '))}
             </h1>
             <div className="activity grid grid-cols-12 mb-4 gap-2">
                 <div className={'activity col-span-4 h-[320px]'}>

@@ -58,8 +58,8 @@ recordRoutes.route('/record/add').post(function (req, response) {
         });
 });
 
-// This section will help you update a record by id.
-recordRoutes.route('/update/:id').post(function (req, response) {
+// This section will help you to insert schedule record by id.
+recordRoutes.route('/insert/:id').post(function (req, response) {
     let db_connect = dbo.getDb();
     let myquery = { email: req.params.id };
 
@@ -67,6 +67,19 @@ recordRoutes.route('/update/:id').post(function (req, response) {
     db_connect
         .collection('users')
         .updateOne(myquery, { $push: { schedule: req.body } });
+});
+
+// This section will help you update Remaining Stock of medicine
+recordRoutes.route('/update/:id').post(function (req, response) {
+    let db_connect = dbo.getDb();
+    let myquery = {
+        email: req.params.id,
+    };
+
+    console.log(req.body);
+    db_connect.collection('users').updateOne(myquery, {
+        $set: { schedule: req.body },
+    });
 });
 
 // This section will help you delete a record

@@ -94,9 +94,10 @@ const Products = () => {
         <div className="products animate__animated animate__fadeInUp">
             <div className="grid grid-rows-[10vh_1fr]">
                 <h1 className="text-[#219653]">
-                    Shop,
-                    <span className="font-extralight"> Healthy Products</span>
+                    <span className="font-extralight">Shop, </span>
+                    Healthcare Products
                 </h1>
+
                 <div className="product_category">
                     <ul className=" grid grid-rows-2 grid-cols-4 gap-2 justify-items-center h-[70vh]">
                         {ProductsItems.map((el, index) => {

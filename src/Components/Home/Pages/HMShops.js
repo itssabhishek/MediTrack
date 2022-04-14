@@ -3,7 +3,7 @@ import Input from '../../SideNavComponents/NewSchedule/Input';
 
 const HmShops = () => {
     const [currentValues, setCurrentValues] = useState({
-        location: '',
+        location: 'Thane',
         zoom: 14,
     });
 
@@ -19,11 +19,10 @@ const HmShops = () => {
     return (
         <div className="hmShops animate__animated animate__fadeInUp">
             <h1 className="text-[#219653]">
-                Search for,
-                <span className="font-extralight">
-                    Nearest Hospitals & Medical shops
-                </span>
+                <span className="font-extralight">Search for, </span>
+                Nearest Hospitals & Medical shops
             </h1>
+
             <div className="content grid grid-rows-[70px_65vh]">
                 <form className="map w-50">
                     <div className="form_right flex  gap-10">
@@ -47,6 +46,7 @@ const HmShops = () => {
 
                 <div id="map">
                     <iframe
+                        title="Google map"
                         className="h-full w-full"
                         frameBorder="0"
                         referrerPolicy="no-referrer-when-downgrade"
