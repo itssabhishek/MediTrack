@@ -67,7 +67,6 @@ const NewSchedule = () => {
     //Send MedicineArray to Database
     async function handleSubmit(e) {
         e.preventDefault();
-        console.log(medicineArray.length);
         if (medicineArray.length) {
             medicineArray.sort(
                 (a, b) => a.mTime.substring(0, 2) - b.mTime.substring(0, 2)

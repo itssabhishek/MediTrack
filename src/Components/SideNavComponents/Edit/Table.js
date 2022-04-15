@@ -1,6 +1,68 @@
 import TableRow from './TableRow';
+import { useEffect, useState } from 'react';
 
 const Table = () => {
+    //Initial values of Name and Schedule
+    const [value, setValue] = useState({
+        schedule: [
+            {
+                mName: 'Loading',
+                mDoses: 'Loading',
+                mStock: 'Loading',
+                mTime: 'Loading',
+            },
+        ],
+    });
+
+    // This method fetches the value from the database.
+    useEffect(() => {
+        async function getRecords() {
+            const currentUserEmail = localStorage.getItem('userEmail');
+            const response = await fetch(
+                `http://localhost:5000/record/${currentUserEmail}`
+            );
+
+            if (!response.ok) {
+                const message = `An error occurred: ${response.statusText}`;
+                window.alert(message);
+                return;
+            }
+
+            const returnedData = await response.json();
+            setValue({
+                schedule: returnedData.schedule[0],
+            });
+        }
+
+        getRecords().then((r) => r);
+    }, []);
+
+    const [tableRowsContainer, updateTableRowsContainer] = useState([
+        value.schedule.map((el, index) => (
+            <TableRow
+                mName={el.mName}
+                mDoses={el.mDoses}
+                mStock={el.mStock}
+                mTime={el.mTime}
+                key={index}
+            />
+        )),
+    ]);
+
+    const newTableRow = () => {
+        updateTableRowsContainer((prev) => [
+            ...prev,
+
+            <TableRow
+                mName={'Name'}
+                mDoses={'Doses'}
+                mStock={'Stock'}
+                mTime={'Time'}
+                key={Math.random()}
+            />,
+        ]);
+    };
+
     return (
         <section className="editable_table">
             {/*Editable table*/}
@@ -8,7 +70,10 @@ const Table = () => {
                 <div className="card-body">
                     <div id="table" className="table-editable">
                         <span className="table-add float-right">
-                            <a href="#!" className="text-success">
+                            <button
+                                className="text-success"
+                                onClick={newTableRow}
+                            >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     className="h-6 w-6"
@@ -23,7 +88,7 @@ const Table = () => {
                                         d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
                                     />
                                 </svg>
-                            </a>
+                            </button>
                         </span>
                         <table className="table table-bordered table-responsive-md text-center">
                             <thead>
@@ -39,8 +104,8 @@ const Table = () => {
                                     <th className="text-center">Remove</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <TableRow />
+                            <tbody className="tableRows">
+                                {tableRowsContainer}
                             </tbody>
                         </table>
                     </div>

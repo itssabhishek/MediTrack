@@ -63,22 +63,25 @@ recordRoutes.route('/insert/:id').post(function (req, response) {
     let db_connect = dbo.getDb();
     let myquery = { email: req.params.id };
 
-    console.log(req.body);
     db_connect
         .collection('users')
         .updateOne(myquery, { $push: { schedule: req.body } });
 });
 
 // This section will help you update Remaining Stock of medicine
-recordRoutes.route('/update/:id').post(function (req, response) {
+recordRoutes.route('/update/:id/:mName').post(function (req, response) {
     let db_connect = dbo.getDb();
     let myquery = {
         email: req.params.id,
+        'schedule.0.mName': req.params.mName,
     };
 
-    console.log(req.body);
     db_connect.collection('users').updateOne(myquery, {
-        $set: { schedule: req.body },
+        $set: {
+            'schedule.0.$.mStock': (
+                req.body[0].mStock - req.body[0].mDoses
+            ).toString(),
+        },
     });
 });
 
