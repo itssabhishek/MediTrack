@@ -101,7 +101,7 @@ const Dashboard = () => {
                     'Content-Type': 'application/json',
                 },
             }
-        ).then((response) => console.log(response));
+        ).then((response) => response);
 
         setLeftMedicine(
             leftMedicine.filter((el) => el.mName !== takenMedicine)
@@ -149,24 +149,26 @@ const Dashboard = () => {
                                         upcomingMedicine[0].mStock
                                     })`}
                                 </h3>
-                                <h5 className="font-light text-blue-700">{`Time: ${
+                                <h3 className="font-light text-blue-900">{`Time: ${
                                     value.schedule[0].mName &&
                                     upcomingMedicine[0].mTime
-                                }`}</h5>
-                                <h5 className="font-light text-blue-700">{`Doses: ${
+                                }`}</h3>
+                                <h3 className="font-light text-blue-900">{`Doses: ${
                                     value.schedule[0].mName &&
                                     upcomingMedicine[0].mDoses
-                                }`}</h5>
-                                <h5 className="font-light text-blue-700">
-                                    Description
+                                }`}</h3>
+                                <h5 className=" text-blue-900">
+                                    Want to know about this medicine?
                                 </h5>
-                                <p className="text-sm text-gray-500">
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipisicing elit. Consequuntur cum cumque
-                                    deserunt eos error, est expedita harum in
-                                    ipsum nihil nulla, odio officiis pariatur
-                                    possimus quia quidem reprehenderit sequi
-                                    voluptatibus?
+                                <p>
+                                    <a
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="no-underline text-lg text-white"
+                                        href={`https://www.webmd.com/search/search_results/default.aspx?query=${upcomingMedicine[0].mName}`}
+                                    >
+                                        Click here
+                                    </a>
                                 </p>
                             </>
                         ) : (
@@ -325,17 +327,16 @@ const Dashboard = () => {
                     </div>
                 </div>
             </div>
-            <div className="upcoming_table">
+            <div className="upcoming_table h-[180px] overflow-y-scroll overflow-x-hidden">
                 <div className={'table_container'}>
                     <p>Upcoming:</p>
-                    <table className="table w-full rounded-3xl border-2 ">
+                    <table className="table  rounded-3xl border-2 ">
                         <thead>
                             <tr className={'h-12 border-b-2 border-gray-500'}>
                                 <th className={'px-2'}>Name</th>
                                 <th>Time</th>
                                 <th>Dosage</th>
                                 <th>Stock left</th>
-                                <th>Description</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -355,10 +356,6 @@ const Dashboard = () => {
                                                 <td>{el.mTime}</td>
                                                 <td>{el.mDoses}</td>
                                                 <td>{el.mStock}</td>
-                                                <td>
-                                                    Lorem ipsum dolor sit amet,
-                                                    consectetur
-                                                </td>
                                             </tr>
                                         );
                                     })}

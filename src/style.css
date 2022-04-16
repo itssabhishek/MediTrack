@@ -13,6 +13,7 @@
 
 body {
     background: #ffffff;
+    overflow: hidden;
 }
 
 :root {

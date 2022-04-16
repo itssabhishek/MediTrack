@@ -51,7 +51,7 @@ recordRoutes.route('/record/add').post(function (req, response) {
                     .collection('users')
                     .insertOne(myobj, function (err, res) {
                         if (err) throw err;
-                        console.log('added');
+
                         response.json(res);
                     });
             } else response.json(result);
@@ -85,13 +85,65 @@ recordRoutes.route('/update/:id/:mName').post(function (req, response) {
     });
 });
 
+// This section will help you to remove selected medicine from database
+recordRoutes.route('/delete/:id/:mName').post(function (req, response) {
+    let db_connect = dbo.getDb();
+    let myquery = {
+        email: req.params.id,
+    };
+
+    db_connect.collection('users').updateOne(myquery, {
+        $pull: {
+            'schedule.0': { mName: req.params.mName },
+        },
+    });
+});
+
+// This section will help you to get single medicine information from database(used in reset function)
+recordRoutes.route('/get/:mName').get(function (req, res) {
+    let db_connect = dbo.getDb();
+    let myquery = { 'schedule.0.mName': req.params.mName };
+    db_connect.collection('users').findOne(myquery, function (err, result) {
+        if (err) throw err;
+        res.json(result.schedule[0]);
+    });
+});
+
+// This section will help you update whole deatail of medicine (used in rowSave)
+recordRoutes.route('/record/update/:id/:mName').post(function (req, response) {
+    let db_connect = dbo.getDb();
+    let myquery = {
+        email: req.params.id,
+        'schedule.0.mName': req.params.mName,
+    };
+
+    if (req.params.mName === 'Medicine Name') {
+        db_connect.collection('users').updateOne(
+            { email: req.params.id },
+            {
+                $push: {
+                    'schedule.0': req.body[0],
+                },
+            }
+        );
+    } else {
+        db_connect.collection('users').updateOne(myquery, {
+            $set: {
+                'schedule.0.$.mName': req.body[0].mName,
+                'schedule.0.$.mDoses': req.body[0].mDoses,
+                'schedule.0.$.mStock': req.body[0].mStock,
+                'schedule.0.$.mTime': req.body[0].mTime,
+            },
+        });
+    }
+});
+
 // This section will help you delete a record
 recordRoutes.route('/:id').delete((req, response) => {
     let db_connect = dbo.getDb();
     let myquery = { email: req.params.id };
     db_connect.collection('users').deleteOne(myquery, function (err, obj) {
         if (err) throw err;
-        console.log('1 document deleted');
         response.json(obj);
     });
 });

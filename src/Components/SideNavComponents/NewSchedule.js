@@ -46,7 +46,7 @@ const NewSchedule = () => {
                 notifyToasterShower();
                 medicineArray.push(medicineDatails);
                 setMedicineDetails({
-                    mName: '',
+                    mName: 'new',
                     mDoses: '',
                     mStock: '',
                     mTime: '',

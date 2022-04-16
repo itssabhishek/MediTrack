@@ -1,16 +1,97 @@
 const TableRow = ({ mName, mDoses, mStock, mTime }) => {
+    //Remove whole medicine from database
+    async function rowRemove(e) {
+        if (
+            window.confirm(
+                'Please confirm whether you want to delete this or not? This action cannot be revert back!'
+            ) === true
+        ) {
+            const medicineWhichHasToBeRemoved =
+                e.target.closest('tr').firstChild.textContent;
+            e.target.closest('tr').remove();
+            await fetch(
+                `http://localhost:5000/delete/${localStorage.getItem(
+                    'userEmail'
+                )}/${medicineWhichHasToBeRemoved}`,
+                {
+                    method: 'POST',
+                    body: medicineWhichHasToBeRemoved.toString(),
+                }
+            ).then((response) => response);
+        }
+    }
+
+    //Reset changes to default value
+    async function rowReset(e) {
+        const response = await fetch(`http://localhost:5000/get/${mName}`);
+        const returnedData = await response.json();
+        const [previousState] = returnedData.filter((el) => el.mName === mName);
+        e.target.closest('tr').children[0].textContent = previousState.mName;
+        e.target.closest('tr').children[1].textContent = previousState.mDoses;
+        e.target.closest('tr').children[2].textContent = previousState.mStock;
+        e.target.closest('tr').children[3].textContent = previousState.mTime;
+    }
+
+    //Save changed data to database
+    async function rowSave(e) {
+        if (window.confirm('Confirm save') === true) {
+            const newName = e.target.closest('tr').children[0].textContent;
+            const newDoses = e.target.closest('tr').children[1].textContent;
+            const newStock = e.target.closest('tr').children[2].textContent;
+            const newTime = e.target.closest('tr').children[3].textContent;
+
+            const newArray = [
+                {
+                    mName: newName,
+                    mDoses: newDoses,
+                    mStock: newStock,
+                    mTime: newTime,
+                },
+            ];
+
+            await fetch(
+                `http://localhost:5000/record/update/${localStorage.getItem(
+                    'userEmail'
+                )}/${mName}`,
+                {
+                    method: 'POST',
+                    body: JSON.stringify(newArray),
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                }
+            ).then((response) => response);
+        }
+    }
+
     return (
         <tr>
-            <td className="pt-3-half" contentEditable="true">
+            <td
+                className="pt-3-half"
+                contentEditable="true"
+                suppressContentEditableWarning={true}
+            >
                 {mName}
             </td>
-            <td className="pt-3-half" contentEditable="true">
+            <td
+                className="pt-3-half"
+                contentEditable="true"
+                suppressContentEditableWarning={true}
+            >
                 {mDoses}
             </td>
-            <td className="pt-3-half" contentEditable="true">
+            <td
+                className="pt-3-half"
+                contentEditable="true"
+                suppressContentEditableWarning={true}
+            >
                 {mStock}
             </td>
-            <td className="pt-3-half" contentEditable="true">
+            <td
+                className="pt-3-half"
+                contentEditable="true"
+                suppressContentEditableWarning={true}
+            >
                 {mTime}
             </td>
             <td className="pt-3-half">
@@ -18,6 +99,7 @@ const TableRow = ({ mName, mDoses, mStock, mTime }) => {
                     <button
                         type="button"
                         className="w-12 h-8 rounded-full bg-blue-400"
+                        onClick={rowReset}
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -41,6 +123,7 @@ const TableRow = ({ mName, mDoses, mStock, mTime }) => {
                     <button
                         type="button"
                         className="w-12 h-8 rounded-full bg-green-400"
+                        onClick={rowSave}
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -64,6 +147,7 @@ const TableRow = ({ mName, mDoses, mStock, mTime }) => {
                     <button
                         type="button"
                         className="w-12 h-8 rounded-full bg-rose-400"
+                        onClick={rowRemove}
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"

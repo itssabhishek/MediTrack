@@ -37,30 +37,19 @@ const Table = () => {
         getRecords().then((r) => r);
     }, []);
 
-    const [tableRowsContainer, updateTableRowsContainer] = useState([
-        value.schedule.map((el, index) => (
-            <TableRow
-                mName={el.mName}
-                mDoses={el.mDoses}
-                mStock={el.mStock}
-                mTime={el.mTime}
-                key={index}
-            />
-        )),
-    ]);
-
+    //To add new Row
     const newTableRow = () => {
-        updateTableRowsContainer((prev) => [
-            ...prev,
-
-            <TableRow
-                mName={'Name'}
-                mDoses={'Doses'}
-                mStock={'Stock'}
-                mTime={'Time'}
-                key={Math.random()}
-            />,
-        ]);
+        setValue({
+            schedule: [
+                ...value.schedule,
+                {
+                    mName: 'Medicine Name',
+                    mDoses: 'No of doses',
+                    mStock: 'Available stock',
+                    mTime: 'Time',
+                },
+            ],
+        });
     };
 
     return (
@@ -104,8 +93,16 @@ const Table = () => {
                                     <th className="text-center">Remove</th>
                                 </tr>
                             </thead>
-                            <tbody className="tableRows">
-                                {tableRowsContainer}
+                            <tbody>
+                                {value.schedule.map((el, index) => (
+                                    <TableRow
+                                        mName={el.mName}
+                                        mDoses={el.mDoses}
+                                        mStock={el.mStock}
+                                        mTime={el.mTime}
+                                        key={index}
+                                    />
+                                ))}
                             </tbody>
                         </table>
                     </div>

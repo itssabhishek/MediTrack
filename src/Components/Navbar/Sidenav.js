@@ -30,31 +30,31 @@ const Sidenav = function () {
                 </button>
 
                 <ul className="sidenav_options flex flex-col h-[100px] justify-between p-0 mt-10">
-                    <li className="sidenav_options--list hover:bg-green-200 p-2 rounded ">
-                        <Link
-                            to="/new"
-                            className="text-black text-lg no-underline font-medium  flex items-center gap-2 justify-between"
-                        >
-                            <p className="hidden group-hover:inline m-0">
-                                Schedule
-                            </p>
+                    {/*<li className="sidenav_options--list hover:bg-green-200 p-2 rounded ">*/}
+                    {/*    <Link*/}
+                    {/*        to="/new"*/}
+                    {/*        className="text-black text-lg no-underline font-medium  flex items-center gap-2 justify-between"*/}
+                    {/*    >*/}
+                    {/*        <p className="hidden group-hover:inline m-0">*/}
+                    {/*            Schedule*/}
+                    {/*        </p>*/}
 
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-6 w-6 text-green-600"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M12 4v16m8-8H4"
-                                />
-                            </svg>
-                        </Link>
-                    </li>
+                    {/*        <svg*/}
+                    {/*            xmlns="http://www.w3.org/2000/svg"*/}
+                    {/*            className="h-6 w-6 text-green-600"*/}
+                    {/*            fill="none"*/}
+                    {/*            viewBox="0 0 24 24"*/}
+                    {/*            stroke="currentColor"*/}
+                    {/*        >*/}
+                    {/*            <path*/}
+                    {/*                strokeLinecap="round"*/}
+                    {/*                strokeLinejoin="round"*/}
+                    {/*                strokeWidth={2}*/}
+                    {/*                d="M12 4v16m8-8H4"*/}
+                    {/*            />*/}
+                    {/*        </svg>*/}
+                    {/*    </Link>*/}
+                    {/*</li>*/}
                     <li className="sidenav_options--list hover:bg-green-200 mt-4 p-2 rounded">
                         <Link
                             to="/edit"
