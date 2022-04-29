@@ -118,7 +118,9 @@ const Dashboard = () => {
             <div className="activity grid grid-cols-12 mb-4 gap-2">
                 <div className={'activity col-span-4 h-[320px]'}>
                     <p>Activity:</p>
-                    <div className="activity_container p-3 rounded bg-gradient-to-br from-[#38EF7D] to-[#11998E] shadow-lg h-full ">
+                    <div
+                        className={`activity_container  p-3  rounded bg-gradient-to-br from-[#38EF7D] to-[#11998E] shadow-lg h-full `}
+                    >
                         {upcomingMedicine.length ? (
                             <>
                                 <div className="title flex justify-between">
@@ -345,9 +347,11 @@ const Dashboard = () => {
                                     {upcomingMedicine.map((el, index) => {
                                         return (
                                             <tr
-                                                className={
-                                                    'border-b-2 border-gray-500'
-                                                }
+                                                className={`border-b-2 border-gray-500 ${
+                                                    el.mStock <= el.mDoses
+                                                        ? 'bg-rose-500'
+                                                        : ''
+                                                }`}
                                                 key={index}
                                             >
                                                 <td className={'px-2'}>

@@ -30,7 +30,9 @@ const Table = () => {
 
             const returnedData = await response.json();
             setValue({
-                schedule: returnedData.schedule[0],
+                schedule: returnedData.schedule[0].sort(
+                    (a, b) => a.mTime - b.mTime
+                ),
             });
         }
 

@@ -68,7 +68,7 @@ recordRoutes.route('/insert/:id').post(function (req, response) {
         .updateOne(myquery, { $push: { schedule: req.body } });
 });
 
-// This section will help you update Remaining Stock of medicine
+// This section will help you update Remaining Stock of medicine and history of taken medicines
 recordRoutes.route('/update/:id/:mName').post(function (req, response) {
     let db_connect = dbo.getDb();
     let myquery = {
@@ -81,6 +81,13 @@ recordRoutes.route('/update/:id/:mName').post(function (req, response) {
             'schedule.0.$.mStock': (
                 req.body[0].mStock - req.body[0].mDoses
             ).toString(),
+        },
+        $push: {
+            history: {
+                mName: req.params.mName,
+                mTime: req.body[0].mTime,
+                mDate: new Date().toString(),
+            },
         },
     });
 });
