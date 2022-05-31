@@ -22,6 +22,18 @@ body {
     --color-violet_dark: #011824;
 }
 
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+
+.missedMedicineContainer::-webkit-scrollbar-thumb {
+    background: #ca8a04;
+    border-radius: 10px;
+}
+
 /* Preloader */
 #preloader {
     position: fixed;

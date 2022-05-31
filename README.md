@@ -42,5 +42,25 @@ shops’ locations where the medicine might be available
 weekly schedule(up to the shop owners).
 - Rating scheme for shops to help users make an informed decision.
 
+
+## Screenshots
+
+- SignIn page
+![Signin Page](public/images/screenshots/signin.png)
+
+- Home page
+  ![Home page](public/images/screenshots/home.png)
+
+- Products page
+  ![Products Page](public/images/screenshots/healthcareProducts.png)
+
+- Location page
+  ![Location Page](public/images/screenshots/Location.png)
+
+- Help page
+  ![Help Page](public/images/screenshots/help.png)
+
+- Edit page
+  ![Edit Page](public/images/screenshots/edit.png)
 ## Reference
 The original idea for this project is published on [GeeksForGeeks](https://www.geeksforgeeks.org/project-idea-meditrack/)

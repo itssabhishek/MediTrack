@@ -35,7 +35,7 @@ const HmShops = () => {
                         />
                         <Input
                             type={'number'}
-                            placeholder={'Zoom'}
+                            placeholder={'Zoom (between 1 to 21)'}
                             id={'zoom'}
                             max={21}
                             value={currentValues.zoom}

@@ -123,7 +123,7 @@ const Dashboard = () => {
                     >
                         {upcomingMedicine.length ? (
                             <>
-                                <div className="title flex justify-between">
+                                <div className="title flex justify-between overflow-y-scroll">
                                     <h4 className="font-extralight text-4xl text-white">
                                         Next...
                                     </h4>
@@ -205,7 +205,7 @@ const Dashboard = () => {
                     <div className="activity_container p-3 rounded bg-gradient-to-br from-yellow-300 to-yellow-600 shadow-lg h-full">
                         {leftMedicine.length ? (
                             <>
-                                <div className="title flex justify-between">
+                                <div className="title flex justify-between ">
                                     <h4 className="font-extralight text-4xl text-white">
                                         Attention...
                                     </h4>
@@ -227,70 +227,60 @@ const Dashboard = () => {
                                 <h3 className="font-extrabold text-4xl text-yellow-900">
                                     Missed Medicines {leftMedicine.length}
                                 </h3>
-                                <div className="flex flex-col">
-                                    <div className="overflow-hidden">
-                                        <div className="py-2 inline-block min-w-full">
-                                            <div className="overflow-hidden">
-                                                <table className="w-full text-center">
-                                                    <thead>
-                                                        <tr className="odd:border-white">
-                                                            <th
-                                                                scope="col"
-                                                                className="text-sm font-medium text-blue-700 px-6 py-1"
+                                <div className="missedMedicineContainer flex flex-col max-h-[200px]  overflow-y-scroll overflow-x-hidden">
+                                    <div className="py-2 inline-block min-w-full">
+                                        <table className="w-full text-center">
+                                            <thead>
+                                                <tr className="odd:border-white">
+                                                    <th
+                                                        scope="col"
+                                                        className="text-sm font-medium text-blue-700 px-6 py-1"
+                                                    >
+                                                        Name
+                                                    </th>
+                                                    <th
+                                                        scope="col"
+                                                        className="text-sm font-medium text-blue-700 px-6 py-1 border-x"
+                                                    >
+                                                        Time
+                                                    </th>
+                                                    <th
+                                                        scope="col"
+                                                        className="text-sm font-medium text-blue-700 px-6 py-1"
+                                                    >
+                                                        Check if taken
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {leftMedicine.map(
+                                                    (el, index) => {
+                                                        return (
+                                                            <tr
+                                                                className="missedMedicineContainer even:border-white border-y border-white"
+                                                                key={index}
                                                             >
-                                                                Name
-                                                            </th>
-                                                            <th
-                                                                scope="col"
-                                                                className="text-sm font-medium text-blue-700 px-6 py-1 border-x"
-                                                            >
-                                                                Time
-                                                            </th>
-                                                            <th
-                                                                scope="col"
-                                                                className="text-sm font-medium text-blue-700 px-6 py-1"
-                                                            >
-                                                                Check if taken
-                                                            </th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        {leftMedicine.map(
-                                                            (el, index) => {
-                                                                return (
-                                                                    <tr
-                                                                        className="missedMedicineContainer even:border-white border-y border-white"
-                                                                        key={
-                                                                            index
+                                                                <td className="missedMedicineName text-sm text-white font-medium px-6 py-2 whitespace-nowrap">
+                                                                    {el.mName}
+                                                                </td>
+                                                                <td className="text-sm text-white font-light px-6 py-2 whitespace-nowrap border-x">
+                                                                    {el.mTime}
+                                                                </td>
+                                                                <td className="text-sm text-white font-light px-6 py-2 whitespace-nowrap">
+                                                                    <input
+                                                                        type="checkbox"
+                                                                        className="h-4 w-4"
+                                                                        onClick={
+                                                                            checkHandler
                                                                         }
-                                                                    >
-                                                                        <td className="missedMedicineName text-sm text-white font-medium px-6 py-2 whitespace-nowrap">
-                                                                            {
-                                                                                el.mName
-                                                                            }
-                                                                        </td>
-                                                                        <td className="text-sm text-white font-light px-6 py-2 whitespace-nowrap border-x">
-                                                                            {
-                                                                                el.mTime
-                                                                            }
-                                                                        </td>
-                                                                        <td className="text-sm text-white font-light px-6 py-2 whitespace-nowrap">
-                                                                            <input
-                                                                                type="checkbox"
-                                                                                className="h-4 w-4"
-                                                                                onClick={
-                                                                                    checkHandler
-                                                                                }
-                                                                            />
-                                                                        </td>
-                                                                    </tr>
-                                                                );
-                                                            }
-                                                        )}
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
+                                                                    />
+                                                                </td>
+                                                            </tr>
+                                                        );
+                                                    }
+                                                )}
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </>
@@ -348,7 +338,7 @@ const Dashboard = () => {
                                         return (
                                             <tr
                                                 className={`border-b-2 border-gray-500 ${
-                                                    el.mStock <= el.mDoses
+                                                    +el.mStock <= +el.mDoses
                                                         ? 'bg-rose-500'
                                                         : ''
                                                 }`}
